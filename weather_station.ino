@@ -18,7 +18,7 @@ float humidity = 0.0;     // in percentage
 float rainIntensity = 0.0;  // 0 to 100%
 
 unsigned long lastDHTReadTime = 0;
-const unsigned long DHT_READ_INTERVAL = 2000;  // Read DHT every 2 seconds
+const unsigned long DHT_READ_INTERVAL = 1000;  // Read DHT every 2 seconds
 
 int animationFrame = 0;
 long baselineDistance = 0;  // Baseline distance to ground/collection surface
@@ -27,7 +27,7 @@ long rainSamples[RAIN_SAMPLES];
 int currentSample = 0;
 
 void setup(void) {
-  Serial.begin(9600);
+  Serial.begin(115200);
   u8g2.begin();
   u8g2.setContrast(255);
   dht.begin();
@@ -144,13 +144,12 @@ void loop(void) {
   animationFrame = (animationFrame + 1) % 3;
 
   // Print debug information to Serial Monitor
-  Serial.print("Temp: ");
-  Serial.print(temperature);
-  Serial.print("°C, Humidity: ");
-  Serial.print(humidity);
-  Serial.print("%, Rain: ");
-  Serial.print(rainIntensity);
-  Serial.println("%");
+Serial.print(temperature);
+Serial.print(",");
+Serial.print(humidity);
+Serial.print(",");
+Serial.println(rainIntensity);
+
 
   delay(100);  // Small delay for stability
 }
